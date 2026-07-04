@@ -5,6 +5,11 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 // import Configurations from '@/common/config/configurations';
 import Joi from 'joi';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { UserModule } from './user/user.module';
+import { User } from '@/user/entities/user.entity';
+import { Profile } from '@/user/profile.entity';
+import { Log } from '@/logs/log.entity';
+import { Role } from '@/roles/roles.entity';
 
 // 动态配置env的地址
 const envFilePath = [`.env.${process.env.NODE_ENV} ?? "development`, '.env'];
@@ -37,10 +42,13 @@ const envFilePath = [`.env.${process.env.NODE_ENV} ?? "development`, '.env'];
         port: configService.get('DB_POST'),
         username: configService.get('DB_USERNAME'),
         password: configService.get('DB_PASSWORD'),
-        entities: [],
+        database: configService.get('DB_DATABASE'),
+        entities: [User, Profile, Log, Role],
+        autoLoadEntities: true,
         synchronize: configService.get('DB_SYNC'),
       }),
     }),
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],
