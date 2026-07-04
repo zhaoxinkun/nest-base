@@ -24,7 +24,7 @@ export class User {
   password: string;
 
   // 一对一的关系
-  @OneToOne(() => Profile, (profile) => profile.user)
+  @OneToOne(() => Profile, (profile) => profile.users)
   @JoinColumn() //外键维护方
   profile: Profile;
 
