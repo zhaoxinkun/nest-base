@@ -2,7 +2,9 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
-import Configurations from '@/common/config/configurations';
+// import Configurations from '@/common/config/configurations';
+import * as joi from 'joi';
+import Joi from 'joi';
 
 // 动态配置env的地址
 const envFilePath = [`.env.${process.env.NODE_ENV} ?? "development`, '.env'];
@@ -12,8 +14,12 @@ const envFilePath = [`.env.${process.env.NODE_ENV} ?? "development`, '.env'];
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      // envFilePath,
-      load: [Configurations],
+      envFilePath, //使用env
+      // load: [Configurations], 使用yml
+      validationSchema: Joi.object({
+        DB_URL: Joi.string().required(),
+        DB_PORT: Joi.number().required(),
+      }),
     }),
   ],
   controllers: [AppController],

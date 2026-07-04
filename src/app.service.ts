@@ -7,7 +7,7 @@ export class AppService {
   constructor(private readonly configService: ConfigService) {}
   getHello(): string {
     // 动态读取不同启动配置下的数据
-    const db_url = this.configService.get<string>('http.host');
+    const db_url = this.configService.get<string>(ConfigEnum.DB_URL);
     console.log('🚀 ~ getHello ~ db: ', db_url);
     return 'Hello World!';
   }
