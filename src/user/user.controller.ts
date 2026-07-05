@@ -24,6 +24,11 @@ export class UserController {
   findAll() {
     return this.userService.findAll();
   }
+  @Get('logByGroup/:id')
+  findAllByGroup(@Param('id') id: number) {
+    console.log('🚀 ~ findAllByGroup ~ id: ', id, typeof id);
+    return this.userService.findLogsGroupBy(id);
+  }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
@@ -38,11 +43,5 @@ export class UserController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.userService.remove(+id);
-  }
-
-  @Get('logByGroup/:id')
-  findAllByGroup(@Param('id') id: number) {
-    console.log('🚀 ~ findAllByGroup ~ id: ', id, typeof id);
-    return this.userService.findLogsGroupBy(id);
   }
 }

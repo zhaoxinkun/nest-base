@@ -2,13 +2,13 @@ import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserDao } from '@/user/user.dao';
-import { Logger as PinoLogger } from 'nestjs-pino';
+// import { Logger as PinoLogger } from 'nestjs-pino';
 
 @Injectable()
 export class UserService {
   constructor(
     private readonly userDao: UserDao,
-    private readonly logger: PinoLogger,
+    // private readonly logger: PinoLogger, 使用pino的日志
   ) {}
 
   // nest内置的日志
@@ -21,7 +21,7 @@ export class UserService {
 
   findAll() {
     // 使用pino日志
-    this.logger.warn('Get all users');
+    // this.logger.warn('Get all users');
     return this.userDao.findAll();
   }
 
