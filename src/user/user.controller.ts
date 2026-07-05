@@ -39,4 +39,10 @@ export class UserController {
   remove(@Param('id') id: string) {
     return this.userService.remove(+id);
   }
+
+  @Get('logByGroup/:id')
+  findAllByGroup(@Param('id') id: number) {
+    console.log('🚀 ~ findAllByGroup ~ id: ', id, typeof id);
+    return this.userService.findLogsGroupBy(id);
+  }
 }

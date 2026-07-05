@@ -5,9 +5,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from '@/user/entities/user.entity';
 import { Profile } from '@/user/profile.entity';
 import { UserDao } from '@/user/user.dao';
+import { Log } from '@/logs/log.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([User, Profile])],
+  imports: [TypeOrmModule.forFeature([User, Profile, Log])],
   controllers: [UserController],
   providers: [UserService, UserDao],
 })

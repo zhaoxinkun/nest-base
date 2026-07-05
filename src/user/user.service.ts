@@ -25,4 +25,8 @@ export class UserService {
   remove(id: number) {
     return this.userDao.deleteUser(id);
   }
+
+  findLogsGroupBy(id: number) {
+    return this.userDao.findLogsGroupBy(id);
+  }
 }
